@@ -1,0 +1,61 @@
+Create table Shoes (
+SerialNumber char(10) not null,
+ShoesName char(20) not null,
+Material char(10) not null,
+Gender char(10) not null,
+Description char(20) not null,
+Price numeric(10) not null,
+Primary key (SerialNumber),
+Unique (ShoesName)
+);
+
+Create table Merchandise (
+SerialNumber char(10) not null,
+Description char(20) not null,
+Gender char(10) not null,
+Price numeric(10) not null,
+Primary key (SerialNumber)
+);
+
+Create table Customer (
+CustomerID char(10) not null,
+Fname char(15) not null,
+Lname char(15) not null,
+Primary key(CustomerID)
+);
+
+Create table Storage (
+ID char(10) not null,
+Location char(20) not null,
+Quantity numeric(4) not null,
+Primary key(ID)
+);
+
+Create table Store (
+SN char(10) not null,
+SID char(10) not null,
+TID char(10) not null,
+TransactionID numeric(10) not null,
+Foreign key (SN) references Shoes (SerialNumber), 
+Foreign key (SN) references Merchandise (SerialNumber),
+Foreign key (SID) references Storage (ID),
+Foreign key (TransactionID) references Customer (CustomerID) );
+Insert into Shoes values
+(‘00001’, ‘AJ 1’, ‘Suede’, ‘Male’, ‘Travis Scott’, ‘$200.00’),
+(‘00002’, ‘AJ 4’, ‘Leather’, ‘Female’, ‘OW’, ‘$180.00’),
+(‘00003’, ‘AJ 3’, ‘Canvas’, ‘Male’, ‘Union’, ‘$150.00’);
+
+Insert into Merchandise values
+(‘00004’, ’Shirt’, ‘Male’, ‘$20.00’),
+(‘00005’, ’Pants’, ‘Male’, ‘$40.00’),
+(‘00006’, ’Dress’, ‘Female’, ‘$30.00’);
+
+Insert into Customer values
+(‘00001’, ‘Trung’, ‘Dinh’),
+(‘00002’, ‘Owen’, ‘Le’),
+(‘00003’, ‘Junior’, ‘Sims’);
+
+Insert into Storage values
+(‘1’, ‘Siam’, ‘1000’),
+(‘2’, ‘Sathorn’, ‘2000’)
+(‘3’, ‘Bangwa’, ‘800’);
